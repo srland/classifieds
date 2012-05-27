@@ -1,0 +1,24 @@
+{% load classifieds.siteads %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/master.css" />
+  <!--[if IE 6]>
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/fix-ie6.css" />
+  <![endif]-->
+  <!--[if IE 7]>
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/fix-ie7.css" />
+  <![endif]-->
+  <title>{% block title %}
+{{ flatpage.title }}
+{% endblock %}</title>
+ </head>
+ <body>
+  <div style="background-color: white; text-align: left; margin: 5px;">
+{% block content %}
+{{ flatpage.content }}
+{% endblock %}
+  </div>
+ </body>
+</html>

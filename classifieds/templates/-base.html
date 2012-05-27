@@ -1,0 +1,123 @@
+{% load classifieds.siteads %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/master.css" />
+  <!--[if IE 6]>
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/fix-ie6.css" />
+  <![endif]-->
+  <!--[if IE 7]>
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/fix-ie7.css" />
+  <![endif]-->
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+  {% block head %}
+  {% endblock %}
+  <title>{% block title %}
+{% if site %}
+{{ site.name }}
+{% else %}
+Django Classifieds
+{% endif %}
+{% endblock %}</title>
+ </head>
+ <body>
+  <div id="allcontent">
+   <div id="shadow-left">
+   </div>
+   <div id="shadow-right">
+   </div>
+  
+   <div id="header">
+    <div id="header-ad">
+     {% sitead "header" %}
+    </div>
+   </div>
+
+   <div id="sidebar">
+    {% block sidebar %}
+    <ul>
+     <li><a href="/">Home</a></li>
+    </ul>
+    
+    
+		{% if request.user.is_authenticated %}
+		<div class="welcome">Welcome, <span class="name">{{ request.user.first_name }}</span></div>
+		<ul class="arrow">
+		 <li><a href="{% url adposting.views.create %}">Post a New Ad</a></li>
+		 <li><a href="{% url adposting.views.mine %}">Manage My Ads</a></li>
+		 <li><a href="{% url profiles_edit_profile %}">My Profile</a></li>
+		 <li><a href="{% url django.contrib.auth.views.logout %}">Logout</a></li>
+		</ul>
+		{% endif %}
+
+    {% if site.category_set.all %}
+    <h2>Searches</h2>
+    <ul>
+     {% for category in site.category_set.all %}
+     <li><a href="{% url adposting.views.search_in_category category.pk %}">{{ category.name }}</a></li>
+     {% endfor %}
+    </ul>
+    {% endif %}
+
+		{% if not request.user.is_authenticated %}
+    <h2>Advertise</h2>
+    <ul>
+     <li><a href="{% url adposting.views.index %}">Post an Ad</a></li>
+     <li><a href="{% url adposting.views.mine %}">Edit, Delete, or Renew Listing</a></li>
+    </ul>
+    {% endif %}
+
+    <h2>Quick Links</h2>
+    <ul>
+     <li><a href="{% url adposting.views.notify %}">Notify Me</a><span class="note">Receive periodic updates</span></li>
+    </ul>
+
+    {% endblock %}
+    
+    <div class="adcontainer">
+     <div id="sidebar-ad">
+      {% sitead "sidebar" %}
+     </div>
+    </div>
+   </div>
+   
+   <div id="content">
+    {% block messages %}
+    {% if messages %}
+    <div class="messages">
+     <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+     </ul>
+    </div>
+    {% endif %}
+    {% endblock %}
+    {% block content %}{% endblock %}
+   </div>
+   
+   <div id="footer">
+    <div id="copyright">
+     Copyright &copy; 2008<br />
+     ZX Development, LLC, All Rights Reserved<br />
+     Designed by <a href="http://tyzdesign.net/">TYZDesign</a><br />
+     Developed by <a href="http://zxdevelopment.com/">ZX Development, LLC</a>
+    </div>
+    
+    <div class="adcontainer">
+     <div id="footer-ad">
+      {% sitead "footer" %}
+     </div>
+    </div>
+    
+    <ul>
+     <li class="first"><a href="/">Home</a></li>
+     <li><a href="/termsofuse/">Terms of Use</a></li>
+     <li><a href="/privacypolicy/">Privacy Policy</a></li>
+     <li><a href="/contact/">Contact Us</a></li>
+    </ul>
+   </div>
+  </div>
+ </body>
+</html>

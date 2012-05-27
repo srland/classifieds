@@ -1,0 +1,11 @@
+Hello {{ user.first_name }},
+
+Someone from {{ site.name }} has sent a response to your posting.
+
+From: {{ data.email }}
+Subject: {{ data.subject }}
+
+{{ data.message }}
+
+-- The {{ site.name }} automated messaging system
+

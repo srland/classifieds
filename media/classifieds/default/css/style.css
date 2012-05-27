@@ -1,0 +1,36 @@
+/*-------------------------------
+Utility classes
+-------------------------------*/
+
+.l { text-align: left }
+.c { text-align: center }
+.r { text-align: right }
+.aligncenter { margin: 5px auto 15px auto;	display: block; }
+.alignleft { margin: 5px 15px 5px 0; float: left; }
+.alignright { float: right; }
+
+.wrap, .col { float: left;	display: inline; position: relative; }
+.wrap { clear: both }
+
+.clear { clear: both }
+.fl { float: left }
+.fr { float: right }
+.hide, .hidden, .anchor, .skip { display: none }
+.nomargin { margin-bottom: 0 !important }
+.noborder { border: 0 !important }
+.top { margin-top: 0 !important }
+
+.replace, .br { display: block; font-size: 1%; line-height: 0; text-align: left; text-indent: -10000px; }
+
+.hr { background: #ccc; height: 1px; margin: 1.5em 0 }
+.hr hr { display: none }
+
+.b{font-weight:bold;}
+
+/*-------------------------------
+Custom
+-------------------------------*/
+#post-ad {padding-top:0.8em;}
+#post-ad a{color:#ac0101;font-weight:bold;font-size:1.4em;text-decoration:none;}
+.price{color:#ac0101;text-decoration:none;}
+

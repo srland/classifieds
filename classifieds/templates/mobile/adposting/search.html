@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Search</h1>
+
+<form method="post" action="">
+ <table>
+  {% if request.GET.advanced %}
+   {% for form in forms %}
+    {{ form }}
+   {% endfor %}
+  {% else %}
+   {{ forms|last }}
+   <tr>
+    <td colspan="2"><a href="{{ request.page }}?advanced=1">Other Searches</a></td>
+   </tr>
+  {% endif %}
+  <tr>
+   <td colspan="2"><input type="submit" class="submit" value="Search"></td>
+  </tr>
+ </table>
+</form>
+{% endblock %}

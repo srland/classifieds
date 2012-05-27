@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" action="#">
+ <table>
+  {{ form }}
+ </table>
+ <p>
+  <!--  TODO captcha -->
+ </p>
+ <p style="text-align: right;">
+  <input type="submit" class="submit" value="Send" />
+ </p>
+</form>
+{% endblock %}
+

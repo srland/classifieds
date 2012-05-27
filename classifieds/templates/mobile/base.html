@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.wapforum.org/DTD/xhtml-mobile12.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/mobile.css" />
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+  {% block head %}
+  {% endblock %}
+  <title>{% block title %}
+{% if site %}
+{{ site.name }}
+{% else %}
+Django Classifieds
+{% endif %}
+{% endblock %}</title>
+ </head>
+ <body>
+  <div id="header" class="{% block headerclass %}{% endblock %}">
+   <ul>
+    <li>Django Classifieds</li>
+   </ul>
+  </div>
+  
+  <div id="content">
+   {% block messages %}
+   {% if messages %}
+   <div class="messages">
+    <ul>
+     {% for message in messages %}
+     <li>{{ message }}</li>
+     {% endfor %}
+    </ul>
+   </div>
+   {% endif %}
+   {% endblock %}
+   {% block content %}
+   <div id="sidebar">
+    {% if site.category_set.all %}
+    <ul>
+     {% for category in site.category_set.all %}
+     <li><a href="{% url adposting.views.search_in_category category.pk %}">{{ category.name }}</a></li>
+     {% endfor %}
+    </ul>
+    {% endif %}
+   </div>
+   {% endblock %}
+  </div>
+  
+  {% block sidebar %}
+  {% endblock %}
+
+  <div id="footer">
+   <a href="{% url adposting.views.mine %}">Manage Ads</a>&nbsp;|&nbsp;<a href="{% url accounts.views.notify %}">Notify Me</a>
+  </div>
+ </body>
+</html>

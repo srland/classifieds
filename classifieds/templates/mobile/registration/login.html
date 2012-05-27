@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p class="errorlist">Your e-mail address and password didn't match. Please try again.</p>
+{% endif %}
+<p>You must first login to take advantage of this feature. <a href="/accounts/register/">Register &gt;</a></p>
+<form method="post" action="">
+ <ul>
+  <li><label for="id_username">E-mail : </label></li>
+  <li>{{ form.username }}</li>
+  <li><label for="id_password">Password : </label></li>
+  <li>{{ form.password }}</li>
+  <li><input type="submit" value="Login" class="submit" /></li>
+  <li><a href="{% url django.contrib.auth.views.password_reset %}">Forgot Password?</a></li>
+ </ul>
+ <p>
+  <input type="hidden" name="next" value="{{ next }}" />
+ </p>
+</form>
+{% endblock %}
+

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+{% block ad %}
+
+<div class="ad-view">
+ <div class="options">
+  <a href="{% url adposting.views.search_results ad.category.pk %}">&lt; Back to Results</a>&nbsp;|&nbsp;<a href="{% url contact.views.contact_ad ad.pk %}">Contact Info</a>
+ </div>
+
+ <div class="title">{{ ad.title }}</div>
+
+ {% if ad.fields_dict.price %}
+ <div class="price">${{ ad.fields_dict.price|intcomma }}</div>
+ {% endif %}
+
+ <div class="id">
+  <span class="label">ID :</span> {{ ad.pk }}<br />
+  <span class="label">Posted on :</span> {{ ad.created_on|date:"F j, Y" }}
+ </div>
+ 
+ {% if ad.fields_dict.city and ad.fields_dict.state and ad.fields_dict.zip_code %}
+ <div class="location">{{ ad.fields_dict.city }},{{ ad.fields_dict.state }} {{ ad.fields_dict.zip_code }}</div>
+ {% else %}
+  {% if ad.fields_dict.zip_code %}
+ <div class="location">{{ ad.fields_dict.zip_code }}</div>
+  {% endif %}
+ {% endif %}
+ 
+ {% if ad.fields_dict.description %}
+ <div class="description">
+  <h2>Description :</h2>
+  {{ ad.fields_dict.description }}
+ </div>
+ {% endif %}
+
+ <div class="images">
+ {% for image in ad.adimage_set.all %}
+  {% if image.get_thumb_photo_url %}
+   <a href="{{ image.get_full_photo_url }}"><img src="{{ image.get_thumb_photo_url }}" alt="Thumbnail" class="thumbnail" /></a><br />
+  {% endif %}
+ {% endfor %}
+ </div>
+</div>
+ {% endblock %}
+{% endblock %}
+

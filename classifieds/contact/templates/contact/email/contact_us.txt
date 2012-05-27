@@ -1,0 +1,11 @@
+Hello!
+
+Someone from {{ site.name }} has sent a message via the contact form.
+
+From: {{ data.name }} <{{ data.email }}>
+Subject: {{ data.subject }}
+
+{{ data.message }}
+
+-- The {{ site.name }} automated messaging system
+

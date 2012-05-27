@@ -1,0 +1,9 @@
+django-common
+django-tagging
+feedparser
+simplejson
+django-profiles
+django-registration
+paypal
+django-pagination
+  

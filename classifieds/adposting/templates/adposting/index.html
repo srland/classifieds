@@ -1,0 +1,64 @@
+{% extends "adposting/base.html" %}
+{% load i18n %}
+{% load feedzilla_tags i18n %}
+
+{% block content %}
+<div>
+<span id="post-ad" class="alignright"><a href="#">Post an Ad <img alt="Free Post an Ad" src="http://localhost:8000/media/classifieds/default/images/free-icon.png"></a></span>
+<h1><img src="{{ MEDIA_URL }}/iportal/default/img/live-update.png" alt="{% trans "Latest Listings" %}" /><a href="#">{% trans "Latest Listings" %}</a></h1>
+</div>
+<ul>
+
+<li class="li-article">                    
+                <div class="article">
+                        <span class="meta align-right">Wed at 04:01am, Ohio</span>
+                        <h2><a class="price b" href="#">$46,900</a> <a href="#" class="read-link">Ferrari F430 &ndash; Used 2008 Low Miles...</a></h2>
+                        <div class="article-content alignleft">
+                        <p><img src="http://fredvidal.files.wordpress.com/2009/06/ferrari_v4_motorcycle_149.jpg">In a product rollout move that surprises no one--but will delight Ferrari enthusiasts, customers, and dealers the world over--Maranello has chambered the next round of the F430's evolution...</p>
+                        <span><a class="read-link-more" href="{{ post.get_absolute_url }}">Read more &raquo;</a></span>
+            </div><!-- /.article-content -->
+    </div><!-- /.article -->
+    <div class="clear"></div>
+</li>
+<li class="li-article">                    
+                <div class="article">
+                        <span class="meta align-right">Wed at 04:01am, Ohio</span>
+                        <h2><a class="price b" href="#">$46,900</a> <a href="#" class="read-link">Ferrari F430 &ndash; Used 2008 Low Miles...</a></h2>
+                        <div class="article-content alignleft">
+                        <p><img src="http://fredvidal.files.wordpress.com/2009/06/ferrari_v4_motorcycle_149.jpg">In a product rollout move that surprises no one--but will delight Ferrari enthusiasts, customers, and dealers the world over--Maranello has chambered the next round of the F430's evolution...</p>
+                        <span><a class="read-link-more" href="{{ post.get_absolute_url }}">Read more &raquo;</a></span>
+            </div><!-- /.article-content -->
+    </div><!-- /.article -->
+    <div class="clear"></div>
+</li>
+<li class="li-article">                    
+                <div class="article">
+                        <span class="meta align-right">Wed at 04:01am, Ohio</span>
+                        <h2><a class="price b" href="#">$46,900</a> <a href="#" class="read-link">Ferrari F430 &ndash; Used 2008 Low Miles...</a></h2>
+                        <div class="article-content alignleft">
+                        <p><img src="http://fredvidal.files.wordpress.com/2009/06/ferrari_v4_motorcycle_149.jpg">In a product rollout move that surprises no one--but will delight Ferrari enthusiasts, customers, and dealers the world over--Maranello has chambered the next round of the F430's evolution...</p>
+                        <span><a class="read-link-more" href="{{ post.get_absolute_url }}">Read more &raquo;</a></span>
+            </div><!-- /.article-content -->
+    </div><!-- /.article -->
+    <div class="clear"></div>
+</li>
+
+
+{% comment %}
+{% for ad in page.object_list %}
+<li class="li-article">                    
+    <div class="article">
+            <span class="meta align-right">{{ post.created|naturalTimeDifference }}<a href="{{ post.feed.site_url }}" title="{{ post.feed.author_or_title }}"><img class="favicon" src="http://www.google.com/s2/favicons?domain={{ post.feed.site_hostname }}" onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100" onmouseout="this.style.opacity=0.4;this.filters.alpha.opacity=40"/></a></span>
+            <h2><a class="read-link" href="{{ post.get_absolute_url }}">{{ post.title|truncatewords_html:8|safe }}</a></h2>
+            <div class="article-content alignleft">
+            {{ post.content|truncatewords_html:40|safe }}
+            <span><a class="read-link-more" href="{{ post.get_absolute_url }}">Continue reading &raquo;</a></span>
+            </div><!-- /.article-content -->
+    </div><!-- /.article -->
+    <div class="clear"></div>
+</li>
+{% endfor %}
+{% endcomment %}
+
+</ul>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% regroup pages by letter as pages_list %}
+<ul>
+{% for page in pages_list %}
+    <li>{{ page.grouper }}
+    <ul>
+        {% for item in page.list %}
+        <li><a href="{{ item.page.url }}">{{ item.page.title }}</a></li>
+        {% endfor %}
+    </ul>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
+
